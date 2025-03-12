@@ -23,7 +23,7 @@ int countPathSteps(Node * root)
     int countRight = countPathSteps(root->right);
 
     //return whichever is the longest path of the two including the current node (path from current node to leaf node)
-    return max(leftPath, rightPath) + 1;
+    return max(countLeft, countRight) + 1;
 
 }
 
