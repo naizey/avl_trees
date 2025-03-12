@@ -1,0 +1,23 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     equal-paths-test
+relocations:
+  - { offsetInCU: 0x1FA6, offset: 0x1FA6, size: 0x8, addend: 0x0, symName: __ZStL8__ioinit, symObjAddr: 0x6FF0, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x2023, offset: 0x2023, size: 0x8, addend: 0x0, symName: _a, symObjAddr: 0x6FF8, symBinAddr: 0x100008008, symSize: 0x0 }
+  - { offsetInCU: 0x2039, offset: 0x2039, size: 0x8, addend: 0x0, symName: _b, symObjAddr: 0x7000, symBinAddr: 0x100008010, symSize: 0x0 }
+  - { offsetInCU: 0x204F, offset: 0x204F, size: 0x8, addend: 0x0, symName: _c, symObjAddr: 0x7008, symBinAddr: 0x100008018, symSize: 0x0 }
+  - { offsetInCU: 0x2065, offset: 0x2065, size: 0x8, addend: 0x0, symName: _d, symObjAddr: 0x7010, symBinAddr: 0x100008020, symSize: 0x0 }
+  - { offsetInCU: 0x207B, offset: 0x207B, size: 0x8, addend: 0x0, symName: _e, symObjAddr: 0x7018, symBinAddr: 0x100008028, symSize: 0x0 }
+  - { offsetInCU: 0x2091, offset: 0x2091, size: 0x8, addend: 0x0, symName: _f, symObjAddr: 0x7020, symBinAddr: 0x100008030, symSize: 0x0 }
+  - { offsetInCU: 0x21A0, offset: 0x21A0, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x470, symBinAddr: 0x1000039B0, symSize: 0x168 }
+  - { offsetInCU: 0x21C7, offset: 0x21C7, size: 0x8, addend: 0x0, symName: __Z5test5PKc, symObjAddr: 0x364, symBinAddr: 0x1000038A4, symSize: 0x10C }
+  - { offsetInCU: 0x21F5, offset: 0x21F5, size: 0x8, addend: 0x0, symName: __Z5test4PKc, symObjAddr: 0x2AC, symBinAddr: 0x1000037EC, symSize: 0xB8 }
+  - { offsetInCU: 0x2223, offset: 0x2223, size: 0x8, addend: 0x0, symName: __Z5test3PKc, symObjAddr: 0x1CC, symBinAddr: 0x10000370C, symSize: 0xE0 }
+  - { offsetInCU: 0x2251, offset: 0x2251, size: 0x8, addend: 0x0, symName: __Z5test2PKc, symObjAddr: 0x114, symBinAddr: 0x100003654, symSize: 0xB8 }
+  - { offsetInCU: 0x227F, offset: 0x227F, size: 0x8, addend: 0x0, symName: __Z5test1PKc, symObjAddr: 0x88, symBinAddr: 0x1000035C8, symSize: 0x8C }
+  - { offsetInCU: 0x22BB, offset: 0x22BB, size: 0x8, addend: 0x0, symName: __Z7setNodeP4NodeiS0_S0_, symObjAddr: 0x44, symBinAddr: 0x100003584, symSize: 0x44 }
+  - { offsetInCU: 0x2346, offset: 0x2346, size: 0x8, addend: 0x0, symName: __ZN4NodeC1EiPS_S0_, symObjAddr: 0x0, symBinAddr: 0x100003540, symSize: 0x44 }
+  - { offsetInCU: 0xB4, offset: 0x2426, size: 0x8, addend: 0x0, symName: __Z15checkEqualPathsP4NodeiRi, symObjAddr: 0x0, symBinAddr: 0x100003B68, symSize: 0xF0 }
+  - { offsetInCU: 0x500, offset: 0x2872, size: 0x8, addend: 0x0, symName: __Z10equalPathsP4Node, symObjAddr: 0xF0, symBinAddr: 0x100003C58, symSize: 0x30 }
+  - { offsetInCU: 0x555, offset: 0x28C7, size: 0x8, addend: 0x0, symName: __Z15checkEqualPathsP4NodeiRi, symObjAddr: 0x0, symBinAddr: 0x100003B68, symSize: 0xF0 }
+...
