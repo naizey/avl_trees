@@ -38,7 +38,7 @@ bool equalPathsCheck(Node* root, int depth, int& leafDepth)
 
 bool equalPaths(Node* root) 
 {
-    //a leaf node has not been found yet
+    //a leaf node has not been found yet, referenced in helper 
     int leafDepth = -1; 
 
     return equalPathsCheck(root, 0, leafDepth);
