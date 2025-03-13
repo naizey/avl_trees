@@ -10,50 +10,7 @@ using namespace std;
 // You may add any prototypes of helper functions here
 
 
-// int countPathSteps(Node * root)
-// {
-//     //base case, empty tree
-//     if(root == nullptr)
-//     {
-//         return 0;
-//     }
-
-//     //otherwise, recursively get paths of left and right subtrees
-//     int countLeft = countPathSteps(root->left);
-//     int countRight = countPathSteps(root->right);
-
-//     //return whichever is the longest path of the two including the current node (path from current node to leaf node)
-//     return max(countLeft, countRight) + 1;
-
-// }
-
-// bool equalPaths(Node * root)
-// {
-//     // Add your code below
-//     if (root == nullptr)
-//     {
-//         return true;
-//     }
-    
-//     //get the path lengths of the left and right subtrees
-//     int leftPath = countPathSteps(root->left);
-//     int rightPath = countPathSteps(root->right);
-
-//     if((leftPath != rightPath) && (leftPath != 0 && rightPath != 0))
-//     {
-//         return false;
-//     }
-
-//     //recursively check the left and right subtrees
-//     return equalPaths(root->left) && equalPaths(root->right);
-    
-// }
-
-
-
-
-
-bool checkEqualPaths(Node* root, int depth, int& leafDepth) 
+bool equalPathsCheck(Node* root, int depth, int& leafDepth) 
 {
     //base case - empty tree 
     if (root == nullptr) 
@@ -62,11 +19,12 @@ bool checkEqualPaths(Node* root, int depth, int& leafDepth)
     }
 
     //base case - leaf node
-    if (root->left == nullptr && root->right == nullptr) 
+    if(root->left == nullptr && root->right == nullptr) 
     {
-        if (leafDepth == -1) //leaf node not found yet
+        //first leaf node not found yet (FIRST LEAF NODE ONLY)
+        if(leafDepth == -1) 
         {
-            //first leaf node found, set the leafDepth
+            //first leaf node found, set its depth to depth
             leafDepth = depth;
         }
         //compare the depth of this leaf with the first leaf's depth
@@ -74,12 +32,15 @@ bool checkEqualPaths(Node* root, int depth, int& leafDepth)
     }
 
     //check left and right subtrees rescursively
-    return checkEqualPaths(root->left, depth + 1, leafDepth) && checkEqualPaths(root->right, depth + 1, leafDepth);
+    return equalPathsCheck(root->left, depth + 1, leafDepth) && equalPathsCheck(root->right, depth + 1, leafDepth);
 }
+
 
 bool equalPaths(Node* root) 
 {
-    int leafDepth = -1; //leaf node not found yet
-    return checkEqualPaths(root, 0, leafDepth);
+    //a leaf node has not been found yet
+    int leafDepth = -1; 
+
+    return equalPathsCheck(root, 0, leafDepth);
 }
 
