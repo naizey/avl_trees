@@ -264,7 +264,7 @@ Begin implementations for the BinarySearchTree::iterator class.
 * Explicit constructor that initializes an iterator with a given node pointer.
 */
 template<class Key, class Value>
-BinarySearchTree<Key, Value>::iterator::iterator(Node<Key,Value> *ptr)
+BinarySearchTree<Key, Value>::iterator::iterator(Node<Key,Value> *ptr) : current_(ptr)
 {
     // TODO
 }
@@ -273,10 +273,9 @@ BinarySearchTree<Key, Value>::iterator::iterator(Node<Key,Value> *ptr)
 * A default constructor that initializes the iterator to NULL.
 */
 template<class Key, class Value>
-BinarySearchTree<Key, Value>::iterator::iterator() 
+BinarySearchTree<Key, Value>::iterator::iterator() : current_(nullptr)
 {
     // TODO
-
 }
 
 /**
@@ -309,6 +308,7 @@ BinarySearchTree<Key, Value>::iterator::operator==(
     const BinarySearchTree<Key, Value>::iterator& rhs) const
 {
     // TODO
+    return curent_ == rhs.current_;
 }
 
 /**
@@ -321,6 +321,7 @@ BinarySearchTree<Key, Value>::iterator::operator!=(
     const BinarySearchTree<Key, Value>::iterator& rhs) const
 {
     // TODO
+    return curent_ != rhs.current_;
 
 }
 
@@ -333,6 +334,37 @@ typename BinarySearchTree<Key, Value>::iterator&
 BinarySearchTree<Key, Value>::iterator::operator++()
 {
     // TODO
+    //case 1 - current pointer is not pointing to node anymore
+    if(current_ == nullptr)
+    {
+        return *this;
+    }
+    //case 2 - if the current has a right child, go to the leftmost node of that right subtree (successor)
+    if(current_->getRight() != nullptr)
+    {
+        current_ = current_->getRight();
+        //goes to leftmost child in right subtree
+        while(current_->getLeft() != nullptr)
+        {
+            current_ = current_->getLeft();
+        }
+    }
+    //no right child, walk up ancestor chain until you find a parent whose left child is the current node
+    else
+    {
+        //walk up ancestor chain if node is still the right child of its parent or if null
+        while(current_->getParent() != nullptr && current_->getParent()->getRight() == current_)
+        {
+            //walk up
+            current_ = current_->getParent(); 
+        }
+
+        //set current to parent 
+        current_ = current_->getParent();
+
+    }
+    
+    return *this;
 
 }
 
@@ -353,7 +385,7 @@ Begin implementations for the BinarySearchTree class.
 * Default constructor for a BinarySearchTree, which sets the root to NULL.
 */
 template<class Key, class Value>
-BinarySearchTree<Key, Value>::BinarySearchTree() 
+BinarySearchTree<Key, Value>::BinarySearchTree() : root_(nullptr)
 {
     // TODO
 }
@@ -362,6 +394,7 @@ template<typename Key, typename Value>
 BinarySearchTree<Key, Value>::~BinarySearchTree()
 {
     // TODO
+    clear();
 
 }
 
