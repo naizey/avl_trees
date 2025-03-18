@@ -312,7 +312,7 @@ BinarySearchTree<Key, Value>::iterator::operator==(
     const BinarySearchTree<Key, Value>::iterator& rhs) const
 {
     // TODO
-    return curent_ == rhs.current_;
+    return current_ == rhs.current_;
 }
 
 /**
@@ -325,7 +325,7 @@ BinarySearchTree<Key, Value>::iterator::operator!=(
     const BinarySearchTree<Key, Value>::iterator& rhs) const
 {
     // TODO
-    return curent_ != rhs.current_;
+    return current_ != rhs.current_;
 
 }
 
