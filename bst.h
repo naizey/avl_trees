@@ -247,7 +247,10 @@ protected:
     virtual void nodeSwap( Node<Key,Value>* n1, Node<Key,Value>* n2) ;
 
     // Add helper functions here
-    static Node<Key, Value>* successor(Node<Key, Value>* current);
+    static Node<Key, Value>* successor(Node<Key, Value>* current); //helper function for iterator operator++
+    bool isBalancedHelper(Node<Key, Value>* root) const; //helper function for isBalanced
+    int getHeight(Node<Key, Value>* root) const; //helper function for isBalanced
+
 
 
 protected:
@@ -453,6 +456,18 @@ template<class Key, class Value>
 void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair)
 {
     // TODO
+    //if tree is empty
+    if(root_ == nullptr)
+    {
+        root_ = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, nullptr);
+        return;
+    }
+    
+    while(root_ != nullptr)
+    {
+
+    }
+ 
 }
 
 
@@ -520,6 +535,10 @@ template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::clear()
 {
     // TODO
+    while(root_ != nullptr)
+    {
+        remove(root_->getKey());
+    }
 }
 
 
@@ -544,6 +563,8 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) con
     // TODO
 }
 
+
+
 /**
  * Return true iff the BST is balanced.
  */
@@ -551,6 +572,55 @@ template<typename Key, typename Value>
 bool BinarySearchTree<Key, Value>::isBalanced() const
 {
     // TODO
+    return isBalancedHelper(root_);
+}
+
+//helper function isBalancedHelper - isBalanced helper
+template<typename Key, typename Value>
+bool BinarySearchTree<Key, Value>::isBalancedHelper(Node<Key, Value>* root) const
+{
+    //base case, empty tree
+	if(root == nullptr)
+	{
+		return true;
+	}
+
+	int leftHeight = getHeight(root->getLeft());
+	int rightHeight = getHeight(root->getRight());
+
+	//Determine if this node is balanced! If not ret false!
+	if(std::abs(leftHeight - rightHeight) > 1) //Height-balancing property: heights of each subtree differ by no more than 1
+	{
+		return false;
+	}
+
+	//Check if there are subtrees under us
+	//Are they balanced?
+	if(!isBalancedHelper(root->getLeft()) || !isBalancedHelper(root->getRight()))
+	{
+		return false;
+	}
+	
+	//If all nodes are balanced return true!
+	return true;
+}
+
+//helper function to get height of a node - isBalanced helper
+template<typename Key, typename Value>
+int BinarySearchTree<Key, Value>::getHeight(Node<Key, Value>* root) const
+{
+    //base case, empty tree
+	if(root == nullptr)
+	{
+		return 0;
+	}	
+	
+	//Otherwise get the value of the left and right trees under you (recursive call)
+	int leftHeight = getHeight(root->getLeft());
+	int rightHeight = getHeight(root->getRight());
+
+	//add 1 for current node + total height of left or right subtree (the max of the two)
+	return std::max(leftHeight, rightHeight) + 1;
 }
 
 
