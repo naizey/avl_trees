@@ -571,6 +571,15 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key, Value>* node, int diff)
         return;
     }
 
+    AVLNode<Key, Value>* parent = node->getParent();
+
+    int ndiff = 0;
+    if(parent != nullptr)
+    {
+        //ndiff is +1 if n is a left child and -1 otherwise
+        ndiff = (node == parent->getLeft()) ? 1 : -1;
+    }
+
     //Case for diff = -1  (left sub taller after removal) (assume diff = -1 then mirror after)
     if(diff == -1)
     {
@@ -587,8 +596,11 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key, Value>* node, int diff)
                 rotateRight(node);
                 node->setBalance(0);
                 c->setBalance(0);
-                //ndiff is +1 if n is a left child and -1 otherwise
-                removeFix(node->getParent(), (node->getParent() && node == node->getParent()->getLeft()) ? 1 : -1);
+                
+                if(parent != nullptr) 
+                {
+                    removeFix(parent, ndiff);
+                }
             }
 
             //subcase 1b - Zig-Zig with balance 0
@@ -632,8 +644,10 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key, Value>* node, int diff)
                     g->setBalance(0);
                 }
 
-                //ndiff is +1 if n is a left child and -1 otherwise
-                removeFix(node->getParent(), (node->getParent() && node == node->getParent()->getLeft()) ? 1 : -1);
+                if(parent != nullptr) 
+                {
+                    removeFix(parent, ndiff);
+                }
             }
         }
 
@@ -647,8 +661,11 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key, Value>* node, int diff)
         else if(newBalance == 0)
         {
             node->setBalance(0);
-            //ndiff is +1 if n is a left child and -1 otherwise
-            removeFix(node->getParent(), (node->getParent() && node == node->getParent()->getLeft()) ? 1 : -1);
+            
+            if(parent != nullptr) 
+            {
+                removeFix(parent, ndiff);
+            }
         }
     }
 
@@ -668,8 +685,11 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key, Value>* node, int diff)
                 rotateLeft(node);
                 node->setBalance(0);
                 c->setBalance(0);
-                //ndiff is +1 if n is a left child and -1 otherwise
-                removeFix(node->getParent(), (node->getParent() && node == node->getParent()->getLeft()) ? 1 : -1);            
+                
+                if(parent != nullptr) 
+                {
+                    removeFix(parent, ndiff);
+                }
             }
 
             //subcase 1b - Zig-Zig with balance 0
@@ -712,8 +732,11 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key, Value>* node, int diff)
                     c->setBalance(0);
                     g->setBalance(0);
                 }
-                //ndiff is +1 if n is a left child and -1 otherwise
-                removeFix(node->getParent(), (node->getParent() && node == node->getParent()->getLeft()) ? 1 : -1);            
+                
+                if(parent != nullptr) 
+                {
+                    removeFix(parent, ndiff);
+                }
             }
         }
 
@@ -727,8 +750,11 @@ void AVLTree<Key, Value>::removeFix(AVLNode<Key, Value>* node, int diff)
         else if(newBalance == 0)
         {
             node->setBalance(0);
-            //ndiff is +1 if n is a left child and -1 otherwise
-            removeFix(node->getParent(), (node->getParent() && node == node->getParent()->getLeft()) ? 1 : -1);        
+            
+            if(parent != nullptr) 
+            {
+                removeFix(parent, ndiff);
+            }
         }
     }
 
