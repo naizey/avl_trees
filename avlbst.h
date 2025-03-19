@@ -272,6 +272,7 @@ void AVLTree<Key, Value>::rotateLeft(AVLNode<Key, Value>* node)
     rightChild->setLeft(node);
     node->setParent(rightChild);
 
+    //store balances
     int8_t nodeBalance = node->getBalance();
     int8_t rightBalance = rightChild->getBalance();
 
@@ -327,6 +328,7 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key, Value>* node)
     leftChild->setRight(node);
     node->setParent(leftChild);
 
+     //store balances
     int8_t nodeBalance = node->getBalance();
     int8_t leftBalance = leftChild->getBalance();
 
