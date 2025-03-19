@@ -274,10 +274,10 @@ void AVLTree<Key, Value>::rotateLeft(AVLNode<Key, Value>* node)
 
     //update balance factors - height of nodes must be updated after rotation
     //nodes new balance factor is updated by its original balance and the max height balance of right childs subtrees
-    node->setBalance(node->getBalance() - 1 - std::max(0, rightChild->getBalance()));
+    node->setBalance(node->getBalance() - static_cast<int8_t>(1) - std::max(static_cast<int8_t>(0), rightChild->getBalance()));
 
     //rightchilds new balance factor is updated by its original balance and the min height balance of nodes subtrees
-    rightChild->setBalance(rightChild->getBalance() - 1 + std::min(0, node->getBalance()));
+    rightChild->setBalance(rightChild->getBalance() - static_cast<int8_t>(1) + std::min(static_cast<int8_t>(0), node->getBalance()));
 
 }
 
@@ -326,10 +326,10 @@ void AVLTree<Key, Value>::rotateRight(AVLNode<Key, Value>* node)
 
     //update balance factors - height of nodes must be updated after rotation
     //nodes new balance factor is updated by its original balance and the min height balance of left childs subtrees
-    node->setBalance(node->getBalance() + 1 - std::min(0, leftChild->getBalance()));
+    node->setBalance(node->getBalance() + static_cast<int8_t>(1) - std::min(static_cast<int8_t>(0), leftChild->getBalance()));
 
     //leftchilds new balance factor is updated by its original balance and the max height balance of nodes subtrees
-    leftChild->setBalance(leftChild->getBalance() + 1 + std::max(0, node->getBalance()));
+    leftChild->setBalance(leftChild->getBalance() + static_cast<int8_t>(1) + std::max(static_cast<int8_t>(0), node->getBalance()));
 
 }
 
